@@ -1,21 +1,21 @@
 /**
- * General-use odometry class with X_position, Y_position, and
- * orientation_deg being the relevant outputs. This works for one
+ * General-use odometry class with xPosition, yPosition, and
+ * orientationDeg being the relevant outputs. This works for one
  * and two-tracker systems, and needs a gyro to get input angle.
  */
 
 class Odom
 {
 private:
-  float ForwardTracker_center_distance;
-  float SidewaysTracker_center_distance;
-  float ForwardTracker_position;
-  float SideWaysTracker_position;
+  float ForwardTrackerCenterDistance;
+  float SidewaysTrackerCenterDistance;
+  float ForwardTrackerPosition;
+  float SidewaysTrackerPosition;
 public:
-  float X_position;
-  float Y_position;
-  float orientation_deg;
-  void set_position(float X_position, float Y_position, float orientation_deg, float ForwardTracker_position, float SidewaysTracker_position);
-  void update_position(float ForwardTracker_position, float SidewaysTracker_position, float orientation_deg);
-  void set_physical_distances(float ForwardTracker_center_distance, float SidewaysTracker_center_distance);
+  float xPosition;
+  float yPosition;
+  float orientationDeg;
+  void setPosition(float xPosition, float yPosition, float orientationDeg, float ForwardTrackerPosition, float SidewaysTrackerPosition);
+  void updatePosition(float ForwardTrackerPosition, float SidewaysTrackerPosition, float orientationDeg);
+  void setPhysicalDistances(float ForwardTrackerCenterDistance, float SidewaysTrackerCenterDistance);
 };

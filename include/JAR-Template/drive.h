@@ -1,7 +1,9 @@
 #pragma once
 #include "vex.h"
 
-enum drive_setup {ZERO_TRACKER_NO_ODOM, ZERO_TRACKER_ODOM, TANK_ONE_FORWARD_ENCODER, TANK_ONE_FORWARD_ROTATION, 
+using namespace vex;
+
+enum driveSetup {ZERO_TRACKER_NO_ODOM, ZERO_TRACKER_ODOM, TANK_ONE_FORWARD_ENCODER, TANK_ONE_FORWARD_ROTATION, 
 TANK_ONE_SIDEWAYS_ENCODER, TANK_ONE_SIDEWAYS_ROTATION, TANK_TWO_ENCODER, TANK_TWO_ROTATION, 
 HOLONOMIC_TWO_ENCODER, HOLONOMIC_TWO_ROTATION};
 
@@ -13,20 +15,20 @@ HOLONOMIC_TWO_ENCODER, HOLONOMIC_TWO_ROTATION};
 class Drive
 {
 private:
-  float wheel_diameter;
-  float wheel_ratio;
-  float gyro_scale;
-  float drive_in_to_deg_ratio;
-  float ForwardTracker_center_distance;
-  float ForwardTracker_diameter;
-  float ForwardTracker_in_to_deg_ratio;
-  float SidewaysTracker_center_distance;
-  float SidewaysTracker_diameter;
-  float SidewaysTracker_in_to_deg_ratio;
+  float wheelDiameter;
+  float wheelRatio;
+  float gyroScale;
+  float driveInToDegRatio;
+  float ForwardTrackerCenterDistance;
+  float ForwardTrackerDiameter;
+  float ForwardTrackerInToDegRatio;
+  float SidewaysTrackerCenterDistance;
+  float SidewaysTrackerDiameter;
+  float SidewaysTrackerInToDegRatio;
   vex:: triport ThreeWire = vex::triport(vex::PORT22);
 
 public: 
-  drive_setup drive_setup = ZERO_TRACKER_NO_ODOM;
+  driveSetup driveSetup = ZERO_TRACKER_NO_ODOM;
   motor_group DriveL;
   motor_group DriveR;
   inertial Gyro;
@@ -34,122 +36,122 @@ public:
   motor DriveRF;
   motor DriveLB;
   motor DriveRB;
-  rotation R_ForwardTracker;
-  rotation R_SidewaysTracker;
-  encoder E_ForwardTracker;
-  encoder E_SidewaysTracker;
+  rotation RForwardTracker;
+  rotation RSidewaysTracker;
+  encoder EForwardTracker;
+  encoder ESidewaysTracker;
 
-  float turn_max_voltage;
-  float turn_kp;
-  float turn_ki;
-  float turn_kd;
-  float turn_starti;
+  float turnMaxVoltage;
+  float turnKp;
+  float turnKi;
+  float turnKd;
+  float turnStarti;
 
-  float turn_settle_error;
-  float turn_settle_time;
-  float turn_timeout;
+  float turnSettleError;
+  float turnSettleTime;
+  float turnTimeout;
 
-  float drive_min_voltage;
-  float drive_max_voltage;
-  float drive_kp;
-  float drive_ki;
-  float drive_kd;
-  float drive_starti;
+  float driveMinVoltage;
+  float driveMaxVoltage;
+  float driveKp;
+  float driveKi;
+  float driveKd;
+  float driveStarti;
 
-  float drive_settle_error;
-  float drive_settle_time;
-  float drive_timeout;
+  float driveSettleError;
+  float driveSettleTime;
+  float driveTimeout;
 
-  float heading_max_voltage;
-  float heading_kp;
-  float heading_ki;
-  float heading_kd;
-  float heading_starti;
+  float headingMaxVoltage;
+  float headingKp;
+  float headingKi;
+  float headingKd;
+  float headingStarti;
 
-  float swing_max_voltage;
-  float swing_kp;
-  float swing_ki;
-  float swing_kd;
-  float swing_starti;
+  float swingMaxVoltage;
+  float swingKp;
+  float swingKi;
+  float swingKd;
+  float swingStarti;
 
-  float swing_settle_error;
-  float swing_settle_time;
-  float swing_timeout;
+  float swingSettleError;
+  float swingSettleTime;
+  float swingTimeout;
 
-  float boomerang_lead;
+  float boomerangLead;
   float boomerang_setback;
 
-  Drive(enum::drive_setup drive_setup, motor_group DriveL, motor_group DriveR, int gyro_port, float wheel_diameter, float wheel_ratio, float gyro_scale, int DriveLF_port, int DriveRF_port, int DriveLB_port, int DriveRB_port, int ForwardTracker_port, float ForwardTracker_diameter, float ForwardTracker_center_distance, int SidewaysTracker_port, float SidewaysTracker_diameter, float SidewaysTracker_center_distance);
+  Drive(enum::driveSetup driveSetup, motor_group DriveL, motor_group DriveR, int gyro_port, float wheelDiameter, float wheelRatio, float gyroScale, int DriveLF_port, int DriveRF_port, int DriveLB_port, int DriveRB_port, int ForwardTracker_port, float ForwardTrackerDiameter, float ForwardTrackerCenterDistance, int SidewaysTracker_port, float SidewaysTrackerDiameter, float SidewaysTrackerCenterDistance);
 
-  void drive_with_voltage(float leftVoltage, float rightVoltage);
+  void driveWithVoltage(float leftVoltage, float rightVoltage);
 
-  float get_absolute_heading();
+  float getAbsoluteHeading();
 
-  float get_left_position_in();
+  float getLeftPositionIn();
 
-  float get_right_position_in();
+  float getRightPositionIn();
 
-  void set_turn_constants(float turn_max_voltage, float turn_kp, float turn_ki, float turn_kd, float turn_starti); 
-  void set_drive_constants(float drive_max_voltage, float drive_kp, float drive_ki, float drive_kd, float drive_starti);
-  void set_heading_constants(float heading_max_voltage, float heading_kp, float heading_ki, float heading_kd, float heading_starti);
-  void set_swing_constants(float swing_max_voltage, float swing_kp, float swing_ki, float swing_kd, float swing_starti);
+  void setTurnConstants(float turnMaxVoltage, float turnKp, float turnKi, float turnKd, float turnStarti); 
+  void setDriveTrainConstants(float driveMaxVoltage, float driveKp, float driveKi, float driveKd, float driveStarti);
+  void setHeadingConstants(float headingMaxVoltage, float headingKp, float headingKi, float headingKd, float headingStarti);
+  void setSwingConstants(float swingMaxVoltage, float swingKp, float swingKi, float swingKd, float swingStarti);
 
-  void set_turn_exit_conditions(float turn_settle_error, float turn_settle_time, float turn_timeout);
-  void set_drive_exit_conditions(float drive_settle_error, float drive_settle_time, float drive_timeout);
-  void set_swing_exit_conditions(float swing_settle_error, float swing_settle_time, float swing_timeout);
+  void setTurnExitConditions(float turnSettleError, float turnSettleTime, float turnTimeout);
+  void setDriveExitConditions(float driveSettleError, float driveSettleTime, float driveTimeout);
+  void setSwingExitConditions(float swingSettleError, float swingSettleTime, float swingTimeout);
 
-  void turn_to_angle(float angle);
-  void turn_to_angle(float angle, float turn_max_voltage);
-  void turn_to_angle(float angle, float turn_max_voltage, float turn_settle_error, float turn_settle_time, float turn_timeout);
-  void turn_to_angle(float angle, float turn_max_voltage, float turn_settle_error, float turn_settle_time, float turn_timeout, float turn_kp, float turn_ki, float turn_kd, float turn_starti);
+  void turnToAngle(float angle);
+  void turnToAngle(float angle, float turnMaxVoltage);
+  void turnToAngle(float angle, float turnMaxVoltage, float turnSettleError, float turnSettleTime, float turnTimeout);
+  void turnToAngle(float angle, float turnMaxVoltage, float turnSettleError, float turnSettleTime, float turnTimeout, float turnKp, float turnKi, float turnKd, float turnStarti);
 
-  void drive_distance(float distance);
-  void drive_distance(float distance, float heading);
-  void drive_distance(float distance, float heading, float drive_max_voltage, float heading_max_voltage);
-  void drive_distance(float distance, float heading, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout);
-  void drive_distance(float distance, float heading, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout, float drive_kp, float drive_ki, float drive_kd, float drive_starti, float heading_kp, float heading_ki, float heading_kd, float heading_starti);
+  void driveDistance(float distance);
+  void driveDistance(float distance, float heading);
+  void driveDistance(float distance, float heading, float driveMaxVoltage, float headingMaxVoltage);
+  void driveDistance(float distance, float heading, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout);
+  void driveDistance(float distance, float heading, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout, float driveKp, float driveKi, float driveKd, float driveStarti, float headingKp, float headingKi, float headingKd, float headingStarti);
 
-  void left_swing_to_angle(float angle);
-  void left_swing_to_angle(float angle, float swing_max_voltage, float swing_settle_error, float swing_settle_time, float swing_timeout, float swing_kp, float swing_ki, float swing_kd, float swing_starti);
-  void right_swing_to_angle(float angle);
-  void right_swing_to_angle(float angle, float swing_max_voltage, float swing_settle_error, float swing_settle_time, float swing_timeout, float swing_kp, float swing_ki, float swing_kd, float swing_starti);
+  void leftSwingToAngle(float angle);
+  void leftSwingToAngle(float angle, float swingMaxVoltage, float swingSettleError, float swingSettleTime, float swingTimeout, float swingKp, float swingKi, float swingKd, float swingStarti);
+  void rightSwingToAngle(float angle);
+  void rightSwingToAngle(float angle, float swingMaxVoltage, float swingSettleError, float swingSettleTime, float swingTimeout, float swingKp, float swingKi, float swingKd, float swingStarti);
   
   Odom odom;
-  float get_ForwardTracker_position();
-  float get_SidewaysTracker_position();
-  void set_coordinates(float X_position, float Y_position, float orientation_deg);
-  void set_heading(float orientation_deg);
-  void position_track();
-  static int position_track_task();
-  vex::task odom_task;
-  float get_X_position();
-  float get_Y_position();
+  float getForwardTrackerPosition();
+  float getSidewaysTrackerPosition();
+  void setCoordinates(float xPosition, float yPosition, float orientationDeg);
+  void setHeading(float orientationDeg);
+  void positionTrack();
+  static int positionTrackTask();
+  vex::task odomTask;
+  float getXPosition();
+  float getYPosition();
 
   void drive_stop(vex::brakeType mode);
 
-  void drive_to_point(float X_position, float Y_position);
-  void drive_to_point(float X_position, float Y_position, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage);
-  void drive_to_point(float X_position, float Y_position, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout);
-  void drive_to_point(float X_position, float Y_position, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout, float drive_kp, float drive_ki, float drive_kd, float drive_starti, float heading_kp, float heading_ki, float heading_kd, float heading_starti);
+  void driveToPoint(float xPosition, float yPosition);
+  void driveToPoint(float xPosition, float yPosition, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage);
+  void driveToPoint(float xPosition, float yPosition, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout);
+  void driveToPoint(float xPosition, float yPosition, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout, float driveKp, float driveKi, float driveKd, float driveStarti, float headingKp, float headingKi, float headingKd, float headingStarti);
   
-  void drive_to_pose(float X_position, float Y_position, float angle);
-  void drive_to_pose(float X_position, float Y_position, float angle, float lead, float setback, float drive_min_voltage);
-  void drive_to_pose(float X_position, float Y_position, float angle, float lead, float setback, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage);
-  void drive_to_pose(float X_position, float Y_position, float angle, float lead, float setback, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout);
-  void drive_to_pose(float X_position, float Y_position, float angle, float lead, float setback, float drive_min_voltage, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout, float drive_kp, float drive_ki, float drive_kd, float drive_starti, float heading_kp, float heading_ki, float heading_kd, float heading_starti);
+  void driveToPose(float xPosition, float yPosition, float angle);
+  void driveToPose(float xPosition, float yPosition, float angle, float lead, float setback, float driveMinVoltage);
+  void driveToPose(float xPosition, float yPosition, float angle, float lead, float setback, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage);
+  void driveToPose(float xPosition, float yPosition, float angle, float lead, float setback, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout);
+  void driveToPose(float xPosition, float yPosition, float angle, float lead, float setback, float driveMinVoltage, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout, float driveKp, float driveKi, float driveKd, float driveStarti, float headingKp, float headingKi, float headingKd, float headingStarti);
   
-  void turn_to_point(float X_position, float Y_position);
-  void turn_to_point(float X_position, float Y_position, float extra_angle_deg);
-  void turn_to_point(float X_position, float Y_position, float extra_angle_deg, float turn_max_voltage, float turn_settle_error, float turn_settle_time, float turn_timeout);
-  void turn_to_point(float X_position, float Y_position, float extra_angle_deg, float turn_max_voltage, float turn_settle_error, float turn_settle_time, float turn_timeout, float turn_kp, float turn_ki, float turn_kd, float turn_starti);
+  void turnToPoint(float xPosition, float yPosition);
+  void turnToPoint(float xPosition, float yPosition, float extraAngleDeg);
+  void turnToPoint(float xPosition, float yPosition, float extraAngleDeg, float turnMaxVoltage, float turnSettleError, float turnSettleTime, float turnTimeout);
+  void turnToPoint(float xPosition, float yPosition, float extraAngleDeg, float turnMaxVoltage, float turnSettleError, float turnSettleTime, float turnTimeout, float turnKp, float turnKi, float turnKd, float turnStarti);
   
-  void holonomic_drive_to_pose(float X_position, float Y_position);
-  void holonomic_drive_to_pose(float X_position, float Y_position, float angle);
-  void holonomic_drive_to_pose(float X_position, float Y_position, float angle, float drive_max_voltage, float heading_max_voltage);
-  void holonomic_drive_to_pose(float X_position, float Y_position, float angle, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout);
-  void holonomic_drive_to_pose(float X_position, float Y_position, float angle, float drive_max_voltage, float heading_max_voltage, float drive_settle_error, float drive_settle_time, float drive_timeout, float drive_kp, float drive_ki, float drive_kd, float drive_starti, float heading_kp, float heading_ki, float heading_kd, float heading_starti);
+  void holonomicDriveToPose(float xPosition, float yPosition);
+  void holonomicDriveToPose(float xPosition, float yPosition, float angle);
+  void holonomicDriveToPose(float xPosition, float yPosition, float angle, float driveMaxVoltage, float headingMaxVoltage);
+  void holonomicDriveToPose(float xPosition, float yPosition, float angle, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout);
+  void holonomicDriveToPose(float xPosition, float yPosition, float angle, float driveMaxVoltage, float headingMaxVoltage, float driveSettleError, float driveSettleTime, float driveTimeout, float driveKp, float driveKi, float driveKd, float driveStarti, float headingKp, float headingKi, float headingKd, float headingStarti);
 
-  void control_arcade();
-  void control_tank();
-  void control_holonomic();
+  void controlArcade();
+  void controlTank();
+  void controlHolonomic();
 };

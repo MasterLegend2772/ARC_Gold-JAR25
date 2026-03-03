@@ -1,51 +1,50 @@
 #include "vex.h"
 
 /**
- * PID constructor with P, I, D, and starti.
- * Starti keeps the I term at 0 until error is less than starti.
+ * PID constructor with P, I, D, and startI.
+ * Starti keeps the I term at 0 until error is less than startI.
  * 
  * @param error Difference in desired and current position.
- * @param kp Proportional constant.
- * @param ki Integral constant.
- * @param kd Derivative constant.
- * @param starti Maximum error to start integrating.
+ * @param Kp Proportional constant.
+ * @param Ki Integral constant.
+ * @param Kd Derivative constant.
+ * @param startI Maximum error to start integrating.
  */
 
-PID::PID(float error, float kp, float ki, float kd, float starti) :
+PID::PID(float error, float Kp, float Ki, float Kd, float startI) :
   error(error),
-  kp(kp),
-  ki(ki),
-  kd(kd),
-  starti(starti)
+  Kp(Kp),
+  Ki(Ki),
+  Kd(Kd),
+  startI(startI)
 {};
 
 /**
  * PID constructor with settling inputs.
  * The settling system works like this: The robot is settled
- * when error is less than settle_error for a duration of settle_time,
+ * when error is less than settleError for a duration of settleTime,
  * or if the function has gone on for longer than timeout. Otherwise
  * it is not settled. Starti keeps the I term at 0 until error is less 
- * than starti.
+ * than startI.
  * 
  * @param error Difference in desired and current position.
- * @param kp Proportional constant.
- * @param ki Integral constant.
- * @param kd Derivative constant.
- * @param starti Maximum error to start integrating.
- * @param settle_error Maximum error to be considered settled.
- * @param settle_time Minimum time to be considered settled.
+ * @param Kp Proportional constant.
+ * @param Ki Integral constant.
+ * @param Kd Derivative constant.
+ * @param startI Maximum error to start integrating.
+ * @param settleError Maximum error to be considered settled.
+ * @param settleTime Minimum time to be considered settled.
  * @param timeout Time after which to give up and move on.
  */
 
-PID::PID(float error, float kp, float ki, float kd, float starti, 
-float settle_error, float settle_time, float timeout) :
+PID::PID(float error, float Kp, float Ki, float Kd, float startI, float settleError, float settleTime, float timeout) :
   error(error),
-  kp(kp),
-  ki(ki),
-  kd(kd),
-  starti(starti),
-  settle_error(settle_error),
-  settle_time(settle_time),
+  Kp(Kp),
+  Ki(Ki),
+  Kd(Kd),
+  startI(startI),
+  settleError(settleError),
+  settleTime(settleTime),
   timeout(timeout)
 {};
 
@@ -55,34 +54,34 @@ float settle_error, float settle_time, float timeout) :
  * a faster or slower loop, you need to let the settler know.
  * 
  * @param error Difference in desired and current position.
- * @param kp Proportional constant.
- * @param ki Integral constant.
- * @param kd Derivative constant.
- * @param starti Maximum error to start integrating.
- * @param settle_error Maximum error to be considered settled.
- * @param settle_time Minimum time to be considered settled.
+ * @param Kp Proportional constant.
+ * @param Ki Integral constant.
+ * @param Kd Derivative constant.
+ * @param startI Maximum error to start integrating.
+ * @param settleError Maximum error to be considered settled.
+ * @param settleTime Minimum time to be considered settled.
  * @param timeout Time after which to give up and move on.
- * @param update_period Loop delay time in ms.
+ * @param updatePeriod Loop delay time in ms.
  */
 
-PID::PID(float error, float kp, float ki, float kd, float starti, 
-float settle_error, float settle_time, float timeout, float update_period) :
+PID::PID(float error, float Kp, float Ki, float Kd, float startI, 
+float settleError, float settleTime, float timeout, float updatePeriod) :
   error(error),
-  kp(kp),
-  ki(ki),
-  kd(kd),
-  starti(starti),
-  settle_error(settle_error),
-  settle_time(settle_time),
+  Kp(Kp),
+  Ki(Ki),
+  Kd(Kd),
+  startI(startI),
+  settleError(settleError),
+  settleTime(settleTime),
   timeout(timeout),
-  update_period(update_period)
+  updatePeriod(updatePeriod)
 {};
 
 /**
  * Computes the output power based on the error.
  * Typical PID calculation with some optimizations: When the robot crosses
  * error=0, the i-term gets reset to 0. And, of course, the robot only
- * accumulates i-term when error is less than starti. Read about these at
+ * accumulates i-term when error is less than startI. Read about these at
  * https://georgegillard.com/resources/documents.
  * 
  * @param error Difference in desired and current position.
@@ -90,44 +89,44 @@ float settle_error, float settle_time, float timeout, float update_period) :
  */
 
 float PID::compute(float error){
-  if (fabs(error) < starti){
-    accumulated_error+=error;
+  if (fabs(error) < startI){
+    accumulatedError+=error;
   }
   // Checks if the error has crossed 0, and if it has, it eliminates the integral term.
-  if ((error>0 && previous_error<0)||(error<0 && previous_error>0)){ 
-    accumulated_error = 0; 
+  if ((error>0 && previousError<0)||(error<0 && previousError>0)){ 
+    accumulatedError = 0; 
   }
 
-  output = kp*error + ki*accumulated_error + kd*(error-previous_error);
+  output = Kp*error + Ki*accumulatedError + Kd*(error-previousError);
 
-  previous_error=error;
+  previousError=error;
 
-  if(fabs(error)<settle_error){
-    time_spent_settled+=10;
+  if(fabs(error)<settleError){
+    timeSpentSettled+=10;
   } else {
-    time_spent_settled = 0;
+    timeSpentSettled = 0;
   }
 
-  time_spent_running+=10;
+  timeSpentRunning+=10;
 
   return output;
 }
 
 /**
  * Computes whether or not the movement has settled.
- * The robot is considered settled when error is less than settle_error 
- * for a duration of settle_time, or if the function has gone on for 
+ * The robot is considered settled when error is less than settleError 
+ * for a duration of settleTime, or if the function has gone on for 
  * longer than timeout. Otherwise it is not settled.
  * 
  * @return Whether the movement is settled.
  */
 
-bool PID::is_settled(){
-  if (time_spent_running>timeout && timeout != 0){
+bool PID::isSettled(){
+  if (timeSpentRunning>timeout && timeout != 0){
     return(true);
   } // If timeout does equal 0, the move will never actually time out. Setting timeout to 0 is the 
     // equivalent of setting it to infinity.
-  if (time_spent_settled>settle_time){
+  if (timeSpentSettled>settleTime){
     return(true);
   }
   return(false);
