@@ -187,11 +187,11 @@ void pre_auton() {
   }
 }
 
-/**
+/*
  * Auton function, which runs the selected auton. Case 0 is the default,
  * and will run in the brain screen goes untouched during preauton. Replace
  * driveTest(), for example, with your own auton function you created in
- * autons.cpp and declared in autons.h.
+ * auton.cpp and declared in autons.h.
  */
 
 void autonomous(void) {

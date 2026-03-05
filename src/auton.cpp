@@ -114,7 +114,7 @@ void tankOdomTest(){
   chassis.turnToAngle(0);
 }
 
-/**
+/*
  * Drives in a square while making a full turn in the process. Should
  * end where it started.
  */
@@ -130,8 +130,7 @@ void holonomicOdomTest(){
 
 
 
-void autonSkills() // 15 Inch Version
-{
+void autonSkills() {  // 15 Inch Version
   chassis.setCoordinates(75.592, 12.992, 255);
   //chassis.turnToPoint(-20, -22);
   chassis.driveToPoint(104.529,15);
