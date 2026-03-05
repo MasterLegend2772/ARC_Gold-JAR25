@@ -1,4 +1,4 @@
-// Gregory ARCADE Branch
+/// Coby TANK Branch ///
 
 #include "vex.h"
 #include "auton.h"
@@ -36,7 +36,7 @@ void toggleDriveSpeed();
 void SetSlot();
 void TopSlotMajorityEnemy(int);
 void transferArrayInfo();
-void AutonSkills_Left(); // Autonnomous Route to Run
+void autonSkills(); // Autonnomous Route to Run
 void outTake();
 void rotateRevolver();
 void usercontrol();
@@ -126,7 +126,7 @@ PORT4,
 
 );
 
-int currentAutonSelection = 5;
+int currentAutonSelection = 6;
 bool autoStarted = false;
 
 /**
@@ -147,9 +147,9 @@ void pre_auton() {
     Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
     Brain.Screen.printAt(1, 40, "Battery Percentage: ");
     Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
-    Brain.Screen.printAt(8, 20, "Chassis Heading Reading: ");
-    Brain.Screen.printAt(8, 60, "%f", chassis.getAbsoluteHeading());
-    Brain.Screen.printAt(15, 20, "Selected Auton:");
+    Brain.Screen.printAt(15, 20, "Chassis Heading Reading: ");
+    Brain.Screen.printAt(15, 60, "%f", chassis.getAbsoluteHeading());
+    Brain.Screen.printAt(30, 20, "Selected Auton:");
     switch(currentAutonSelection){
       
       case 0:
@@ -197,32 +197,9 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
   
-  switch(currentAutonSelection){ 
-    case 0:
-      driveTest();
-      break;
-    case 1:         
-      driveTest();
-      break;
-    case 2:
-      turnTest();
-      break;
-    case 3:
-      swingTest();
-      break;
-    case 4:
-      fullTest();
-      break;
-    case 5:
-      odomTest();
-      break;
-    case 6:
-      tankOdomTest();
-      break;
-    case 7:
-      holonomicOdomTest();
-      break;
- }
+  
+  // chassis.driveToPose(10, 0, 0);
+  autonSkills();
 }
 
 /*---------------------------------------------------------------------------*/
