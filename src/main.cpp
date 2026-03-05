@@ -1,3 +1,5 @@
+/// COBY TANK BRANCH ///
+
 #include "vex.h"
 #include "auton.h"
 
@@ -145,9 +147,9 @@ void pre_auton() {
     Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
     Brain.Screen.printAt(1, 40, "Battery Percentage: ");
     Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
-    Brain.Screen.printAt(8, 20, "Chassis Heading Reading: ");
-    Brain.Screen.printAt(8, 60, "%f", chassis.getAbsoluteHeading());
-    Brain.Screen.printAt(15, 20, "Selected Auton:");
+    Brain.Screen.printAt(15, 20, "Chassis Heading Reading: ");
+    Brain.Screen.printAt(15, 60, "%f", chassis.getAbsoluteHeading());
+    Brain.Screen.printAt(30, 20, "Selected Auton:");
     switch(currentAutonSelection){
       
       case 0:
@@ -461,7 +463,7 @@ void usercontrol() {
 
     // Replace this line with [chassis.controlTank()] for tank drive 
     // or [chassis.controlHolonomic()] for holonomic drive.
-    chassis.controlArcade(); // !!! Control Tank for Coby !!!
+    chassis.controlTank(); // !!! Control Tank for Coby !!!
 
     wait(20, msec); 
     // Sleep the task for a short amount of time to
