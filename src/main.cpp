@@ -57,7 +57,7 @@ Drive chassis(
 //HOLONOMIC_TWO_ROTATION
 //
 //Write it here:
-ZERO_TRACKER_ODOM,
+TANK_TWO_ROTATION,
 
 //Add the names of your Drive motors into the motor groups below, separated by commas, i.e. motor_group(Motor1,Motor2,Motor3).
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
@@ -265,13 +265,19 @@ void outTake() {
 
 
 /******************************************************************
- * Function: moveIntake()
+ * Function: forwardIntake()
  * 
  * Purpose: Rotates Revolver by ONE Slot
 *******************************************************************/
-void moveIntake() {
+void forwardIntake() {
   if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
     intake.spin(forward, 12, volt);
+  }
+}
+
+void reverseIntake() {
+  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
+    intake.spin(reverse, 12, volt);
   }
 }
 
@@ -395,9 +401,10 @@ void usercontrol() {
   Brain.Screen.clearScreen();
 
   Controller1.ButtonR1.pressed(outTake);
-  // FREE:: Controller1.ButtonR2.pressed();
+  
+  Controller1.ButtonR2.pressed(reverseIntake);
 
-  Controller1.ButtonL1.pressed(moveIntake);
+  Controller1.ButtonL1.pressed(forwardIntake);
 
   Controller1.ButtonLeft.pressed(fixGeneva);
 
