@@ -36,7 +36,7 @@ void toggleDriveSpeed();
 void SetSlot();
 void TopSlotMajorityEnemy(int);
 void transferArrayInfo();
-void AutonSkills_Left(); // Autonnomous Route to Run
+void autonSkills(); // Autonnomous Route to Run
 void outTake();
 void rotateRevolver();
 void usercontrol();
@@ -199,34 +199,7 @@ void autonomous(void) {
   
   
   // chassis.driveToPose(10, 0, 0);
-  auton1();
-  
-//   switch(currentAutonSelection){ 
-//     case 0:
-//       driveTest();
-//       break;
-//     case 1:         
-//       driveTest();
-//       break;
-//     case 2:
-//       turnTest();
-//       break;
-//     case 3:
-//       swingTest();
-//       break;
-//     case 4:
-//       fullTest();
-//       break;
-//     case 5:
-//       odomTest();
-//       break;
-//     case 6:
-//       tankOdomTest();
-//       break;
-//     case 7:
-//       holonomicOdomTest();
-//       break;
-//  }
+  autonSkills();
 }
 
 /*---------------------------------------------------------------------------*/

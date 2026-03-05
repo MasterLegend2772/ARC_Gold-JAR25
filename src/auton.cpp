@@ -128,10 +128,10 @@ void holonomicOdomTest(){
   chassis.holonomicDriveToPose(0, 0, 0);
 }
 
-void auton1()
+void autonSkills()
 {
-  chassis.setCoordinates(-47.591, -13.958, 325);
+  chassis.setCoordinates(75.592, 12.992, 255);
   //chassis.turnToPoint(-20, -22);
-  chassis.driveToPoint(-56.754,-47.375);
-  chassis.turnToAngle(275);
+  chassis.driveToPoint(104.529,15);
+  chassis.turnToAngle(178);
 }
