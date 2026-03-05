@@ -37,8 +37,8 @@ extern led liftL;
 extern led matchLoader;
 extern led extendo;
 
-extern optical backColorSensor;
-extern optical middleColorSensor;
-extern optical frontColorSensor;
+extern distance backDistanceSensor;
+extern distance middleDistanceSensor;
+extern distance frontDistanceSensor;
 
 void  vexcodeInit(void);

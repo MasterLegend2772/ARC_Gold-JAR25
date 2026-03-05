@@ -51,9 +51,9 @@ led extendo = led(Brain.ThreeWirePort.G);
 
 /////////////////////////////////////
 
-optical backColorSensor = optical(PORT7);
-optical middleColorSensor = optical(PORT6);
-optical frontColorSensor = optical(PORT16);
+distance backDistanceSensor = distance(PORT7);
+distance middleDistanceSensor = distance(PORT6);
+distance frontDistanceSensor = distance(PORT16);
 
 void setDriveTrainConstants() {
   // Set the Drive PID values for the DriveTrain

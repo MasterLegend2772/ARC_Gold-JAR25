@@ -124,7 +124,7 @@ PORT4,
 
 );
 
-int currentAutonSelection = 0;
+int currentAutonSelection = 5;
 bool autoStarted = false;
 
 /**
@@ -142,12 +142,12 @@ void pre_auton() {
   while (!autoStarted){
 
     Brain.Screen.clearScreen();
-    Brain.Screen.printAt(1, 20, "ARC_Gold Template v0.0.1");
-    Brain.Screen.printAt(3, 20, "Battery Percentage: ");
-    Brain.Screen.printAt(3, 60, "%d", Brain.Battery.capacity());
-    Brain.Screen.printAt(5, 20, "Chassis Heading Reading: ");
-    Brain.Screen.printAt(5, 60, "%f", chassis.getAbsoluteHeading());
-    Brain.Screen.printAt(7, 20, "Selected Auton:");
+    Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
+    Brain.Screen.printAt(1, 40, "Battery Percentage: ");
+    Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
+    Brain.Screen.printAt(8, 20, "Chassis Heading Reading: ");
+    Brain.Screen.printAt(8, 60, "%f", chassis.getAbsoluteHeading());
+    Brain.Screen.printAt(15, 20, "Selected Auton:");
     switch(currentAutonSelection){
       
       case 0:
@@ -235,10 +235,11 @@ void autonomous(void) {
 // Additional Driver Control Functions Here //
 
 /******************************************************************
- * Function: fixGeneva()
+ * Function: toggleLift()
  * 
- * Purpose: Reverse Rotate Geneva while button is pressed
+ * Purpose: Manual toggle for Lift
 *******************************************************************/
+
 void toggleLift() {
   liftL.set(!liftL.value());
   liftR.set(!liftR.value());
@@ -269,7 +270,7 @@ void outTake() {
  * Purpose: Rotates Revolver by ONE Slot
 *******************************************************************/
 void moveIntake() {
-  if (!revolver.isSpinning()) {
+  if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
     intake.spin(forward, 12, volt);
   }
 }
@@ -337,17 +338,12 @@ bool isSlotFull() {
   //AND "BackSensor is red or blue"
   //Then return that Slot is full (true)
 
-  if ((((frontColorSensor.hue() <= 20 && frontColorSensor.hue() >= 0)) ||
-    ((frontColorSensor.hue() >= 130 && frontColorSensor.hue() <= 240))) &&
-    (((middleColorSensor.hue() <= 20 && middleColorSensor.hue() >= 0)) ||
-    ((middleColorSensor.hue() >= 130 && middleColorSensor.hue() <= 240))) &&
-    (((backColorSensor.hue() <= 20 && backColorSensor.hue() >= 0)) || 
-    ((backColorSensor.hue() >= 130 && backColorSensor.hue() <= 240)))) {
+  if ((frontDistanceSensor.objectDistance(inches) <= 2) && (middleDistanceSensor.objectDistance(inches) <= 2) && (backDistanceSensor.objectDistance(inches) <= 2)) {
       Brain.Screen.setCursor(1,1);
       Brain.Screen.print("Is Full");
       return true;
     } else return false;
-}
+} 
 
 
 /******************************************************************
@@ -397,10 +393,6 @@ void usercontrol() {
   outtake.stop(hold);
 
   Brain.Screen.clearScreen();
-
-  backColorSensor.setLight(ledState::on);
-  middleColorSensor.setLight(ledState::on);
-  frontColorSensor.setLight(ledState::on);
 
   Controller1.ButtonR1.pressed(outTake);
   // FREE:: Controller1.ButtonR2.pressed();
