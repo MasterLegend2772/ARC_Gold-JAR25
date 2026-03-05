@@ -110,7 +110,7 @@ void tankOdomTest(){
   chassis.setCoordinates(0, 0, 0);
   chassis.turnToPoint(24, 24);
   chassis.driveToPoint(24,24);
-  chassis.driveToPoint(0,0);
+  chassis.driveToPoint(-24,-24);
   chassis.turnToAngle(0);
 }
 
@@ -126,4 +126,12 @@ void holonomicOdomTest(){
   chassis.holonomicDriveToPose(18, 0, 180);
   chassis.holonomicDriveToPose(0, 18, 270);
   chassis.holonomicDriveToPose(0, 0, 0);
+}
+
+void auton1()
+{
+  chassis.setCoordinates(-47.591, -13.958, 325);
+  //chassis.turnToPoint(-20, -22);
+  chassis.driveToPoint(-56.754,-47.375);
+  chassis.turnToAngle(275);
 }

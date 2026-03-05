@@ -14,3 +14,5 @@ void fullTest();
 void odomTest();
 void tankOdomTest();
 void holonomicOdomTest();
+
+void auton1();

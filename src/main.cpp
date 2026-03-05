@@ -126,7 +126,7 @@ PORT4,
 
 );
 
-int currentAutonSelection = 5;
+int currentAutonSelection = 6;
 bool autoStarted = false;
 
 /**
@@ -197,32 +197,36 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
   
-  switch(currentAutonSelection){ 
-    case 0:
-      driveTest();
-      break;
-    case 1:         
-      driveTest();
-      break;
-    case 2:
-      turnTest();
-      break;
-    case 3:
-      swingTest();
-      break;
-    case 4:
-      fullTest();
-      break;
-    case 5:
-      odomTest();
-      break;
-    case 6:
-      tankOdomTest();
-      break;
-    case 7:
-      holonomicOdomTest();
-      break;
- }
+  
+  // chassis.driveToPose(10, 0, 0);
+  auton1();
+  
+//   switch(currentAutonSelection){ 
+//     case 0:
+//       driveTest();
+//       break;
+//     case 1:         
+//       driveTest();
+//       break;
+//     case 2:
+//       turnTest();
+//       break;
+//     case 3:
+//       swingTest();
+//       break;
+//     case 4:
+//       fullTest();
+//       break;
+//     case 5:
+//       odomTest();
+//       break;
+//     case 6:
+//       tankOdomTest();
+//       break;
+//     case 7:
+//       holonomicOdomTest();
+//       break;
+//  }
 }
 
 /*---------------------------------------------------------------------------*/
