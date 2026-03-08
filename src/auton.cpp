@@ -142,8 +142,14 @@ void autonSkills() {  // 15 Inch Version
   // Returns Odometry Constants
   odom_constants();
 
-  // Drive to Matchload
+  // Initialize Setup
   chassis.setCoordinates(75.592, 12.992, 255);
+  toggleLift();
+  extendo.set(true);
+  wait(0.25, sec);
+  toggleLift();
+
+  // Drive to Matchload
   chassis.driveToPoint(103.583, 17.992);
   chassis.turnToAngle(178.5);
   wait(0.15, seconds);
@@ -169,14 +175,14 @@ void autonSkills() {  // 15 Inch Version
   chassis.turnToAngle(-1.5);
   wait(0.15, seconds);
   chassis.driveDistance(13.55);
-  // toggleLift();
-  // outTake();
-  // moveSlot();
-  // outTake();
-  // moveSlot();
-  // outTake();
-  // wait(0.1, seconds);
-  // toggleLift();
+  toggleLift();
+  outTake();
+  moveSlot();
+  outTake();
+  moveSlot();
+  outTake();
+  wait(0.1, seconds);
+  toggleLift();
 
   // Drive to Intake BLUE Side Blocks
   chassis.driveDistance(-7);
@@ -201,14 +207,14 @@ void autonSkills() {  // 15 Inch Version
   chassis.driveDistance(11.45);
   chassis.turnToAngle(178.5);
   wait(0.15, seconds);
-  // toggleLift();
-  // outTake();
-  // moveSlot();
-  // outTake();
-  // moveSlot();
-  // outTake();
-  // wait(0.1, seconds);
-  // toggleLift();
+  toggleLift();
+  outTake();
+  moveSlot();
+  outTake();
+  moveSlot();
+  outTake();
+  wait(0.1, seconds);
+  toggleLift();
 
   // Drive to Park Zone && Park
   chassis.driveDistance(-7);
