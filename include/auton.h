@@ -26,5 +26,8 @@ extern void toggleLift();
 extern void outTake();
 extern void moveSlot();
 extern void unloadAll();
-extern void autonSkills();
+
+// Autonomous Skills Route Functions
+extern void autonSkills15();
+extern void autonSkills24();
 extern void skillsRoute2();

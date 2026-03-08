@@ -138,7 +138,7 @@ void holonomicOdomTest(){
  * 
  * Purpose: Autonomous Skills Route
 *******************************************************************/
-void autonSkills() {  // 15 Inch Version
+void autonSkills15() {  // 15 Inch Version
   // Returns Odometry Constants
   odom_constants();
 
@@ -227,8 +227,10 @@ void autonSkills() {  // 15 Inch Version
   // End
 }
 
-void skillsRoute2()
-{
+void autonSkills24() {  // 24 Inch Version
+}
+
+void skillsRoute2() {
   // Returns Odometry Constants
   odom_constants();
 
