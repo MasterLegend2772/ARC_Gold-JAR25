@@ -197,7 +197,8 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
 
-  autonSkills();
+  //autonSkills();
+  skillsRoute2();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -320,7 +321,7 @@ bool isSlotFull() {
   //AND "BackSensor is red or blue"
   //Then return that Slot is full (true)
 
-  if ((frontDistanceSensor.objectDistance(inches) <= 2) && (middleDistanceSensor.objectDistance(inches) <= 2) && (backDistanceSensor.objectDistance(inches) <= 2)) {
+  if ((frontDistanceSensor.objectDistance(mm) <= 25) && (middleDistanceSensor.objectDistance(mm) <= 25) && (backDistanceSensor.objectDistance(mm) <= 25)) {
       Brain.Screen.setCursor(1,1);
       Brain.Screen.print("Is Full");
       return true;
@@ -449,7 +450,7 @@ void usercontrol() {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(odomTest);
+  Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
   pre_auton();

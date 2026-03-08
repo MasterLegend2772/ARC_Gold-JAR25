@@ -220,3 +220,31 @@ void autonSkills() {  // 15 Inch Version
 
   // End
 }
+
+void skillsRoute2()
+{
+  // Returns Odometry Constants
+  odom_constants();
+
+  // Drive to Matchload
+  chassis.setCoordinates(75.592, 12.992, 255);
+  toggleLift();
+  extendo.set(true);
+  wait(0.25, sec);
+  toggleLift();
+
+  chassis.driveToPoint(103.583, 17.992);
+  chassis.turnToAngle(178.5);
+  matchLoader.set(true);
+  intake.spin(forward, 12.00, volt);
+  wait(0.15, seconds);
+
+  chassis.driveDistance(9.2);
+  waitUntil(isSlotFull());
+  intake.spin(forward, 0.00, volt);
+  moveSlot();
+  intake.spin(forward, 12.00, volt);
+  waitUntil(isSlotFull());
+  intake.spin(forward, 0.00, volt);
+  moveSlot();
+}
