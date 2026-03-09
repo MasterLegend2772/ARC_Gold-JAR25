@@ -134,18 +134,39 @@ void holonomicOdomTest(){
 // ARC Gold Specific Functions && Variables
 
 /******************************************************************
- * Function: setup()
+ * Function: setup15()
  * 
- * Purpose: Initial setup commands for Auton
+ * Purpose: Setup Call for 15 Inch Autonomous & Match
 *******************************************************************/
-void setup() {
+void setup15() {
+  // Returns Odometry Constants
+  odom_constants();
+
+  // Initialize Setup
   chassis.setCoordinates(75.592, 12.992, 255);
   toggleLift();
-  parkDescore.set(true);
   extendo.set(true);
   wait(0.25, sec);
   toggleLift();
 }
+
+
+/******************************************************************
+ * Function: setup24()
+ * 
+ * Purpose: Setup Call for 24 Inch Autonomous & Match
+*******************************************************************/
+void setup24() {
+  // Returns Odometry Constants
+  odom_constants();
+
+  // Initialize Setup
+  chassis.setCoordinates(73.442, 18.456, 255);
+  toggleLift();
+  wait(0.15, sec);
+  toggleLift();
+}
+
 
 /******************************************************************
  * Function: autonSkills()
@@ -153,11 +174,8 @@ void setup() {
  * Purpose: Autonomous Skills Route
 *******************************************************************/
 void autonSkills15() {  // 15 Inch Version
-  // Returns Odometry Constants
-  odom_constants();
-
   // Initialize Setup
-  setup();
+  setup15();
 
   // Drive to Matchload
   chassis.driveToPoint(103.583, 17.992);
@@ -238,15 +256,12 @@ void autonSkills15() {  // 15 Inch Version
 }
 
 void autonSkills24() {  // 24 Inch Version
-
+  setup24();
 }
 
 void skillsRoute2() {
-  // Returns Odometry Constants
-  odom_constants();
-
   // Drive to Matchload
-  setup();
+  setup15();
 
   chassis.driveToPoint(103.583, 17.992);
   chassis.turnToAngle(178.5);
