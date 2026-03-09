@@ -29,6 +29,8 @@ extern void moveSlot();
 extern void unloadAll();
 
 // Autonomous Skills Route Functions
+extern void setup15();
+extern void setup24();
 extern void autonSkills15();
 extern void autonSkills24();
 extern void skillsRoute2();

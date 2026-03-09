@@ -461,7 +461,7 @@ void usercontrol() {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
+  Competition.drivercontrol(odomTest);
 
   // Run the pre-autonomous function.
   pre_auton();
