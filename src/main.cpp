@@ -36,7 +36,6 @@ void toggleDriveSpeed();
 void SetSlot();
 void TopSlotMajorityEnemy(int);
 void transferArrayInfo();
-void autonSkills(); // Autonnomous Route to Run
 void outTake();
 void rotateRevolver();
 void usercontrol();
