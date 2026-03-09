@@ -32,14 +32,8 @@ competition Competition;
   int teamColor = 1;
 
 ///////////////////////// Functions & Prototypes /////////////////////////
-void toggleDriveSpeed();
-void SetSlot();
-void TopSlotMajorityEnemy(int);
-void transferArrayInfo();
-void autonSkills(); // Autonnomous Route to Run
-void outTake();
-void rotateRevolver();
-void usercontrol();
+void autonSkills(); // Autonnomous Route to Run for Skills
+void usercontrol(); // User Control Functions & Call
 
 Drive chassis(
 
@@ -214,6 +208,15 @@ void autonomous(void) {
 // Additional Driver Control Functions Here //
 
 /******************************************************************
+ * Function: toggleParkDescore()
+ * 
+ * Purpose: Manual toggle for Lift
+*******************************************************************/
+void toggleParkDescore() {
+  parkDescore.set(!parkDescore.value());
+}
+
+/******************************************************************
  * Function: toggleLift()
  * 
  * Purpose: Manual toggle for Lift
@@ -294,7 +297,7 @@ void unloadAll() {
 /******************************************************************
  * Function: forwardIntake()
  * 
- * Purpose: Rotates Revolver by ONE Slot
+ * Purpose: Spins Intake FORWARD to intake blocks
 *******************************************************************/
 void forwardIntake() {
   if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
@@ -302,6 +305,12 @@ void forwardIntake() {
   }
 }
 
+
+/******************************************************************
+ * Function: reverseIntake()
+ * 
+ * Purpose: Spins Intake BACKWARD to remove blocks
+*******************************************************************/
 void reverseIntake() {
   if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
     intake.spin(reverse, 12, volt);
@@ -382,6 +391,8 @@ void usercontrol() {
   Controller1.ButtonR2.pressed(reverseIntake);
 
   Controller1.ButtonL1.pressed(forwardIntake);
+
+  Controller1.ButtonX.pressed(toggleParkDescore);
 
   Controller1.ButtonLeft.pressed(fixGeneva);
 

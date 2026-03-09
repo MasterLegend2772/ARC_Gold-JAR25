@@ -134,6 +134,20 @@ void holonomicOdomTest(){
 // ARC Gold Specific Functions && Variables
 
 /******************************************************************
+ * Function: setup()
+ * 
+ * Purpose: Initial setup commands for Auton
+*******************************************************************/
+void setup() {
+  chassis.setCoordinates(75.592, 12.992, 255);
+  toggleLift();
+  parkDescore.set(true);
+  extendo.set(true);
+  wait(0.25, sec);
+  toggleLift();
+}
+
+/******************************************************************
  * Function: autonSkills()
  * 
  * Purpose: Autonomous Skills Route
@@ -143,11 +157,7 @@ void autonSkills15() {  // 15 Inch Version
   odom_constants();
 
   // Initialize Setup
-  chassis.setCoordinates(75.592, 12.992, 255);
-  toggleLift();
-  extendo.set(true);
-  wait(0.25, sec);
-  toggleLift();
+  setup();
 
   // Drive to Matchload
   chassis.driveToPoint(103.583, 17.992);
@@ -228,7 +238,7 @@ void autonSkills15() {  // 15 Inch Version
 }
 
 void autonSkills24() {  // 24 Inch Version
-  
+
 }
 
 void skillsRoute2() {
@@ -236,11 +246,7 @@ void skillsRoute2() {
   odom_constants();
 
   // Drive to Matchload
-  chassis.setCoordinates(75.592, 12.992, 255);
-  toggleLift();
-  extendo.set(true);
-  wait(0.25, sec);
-  toggleLift();
+  setup();
 
   chassis.driveToPoint(103.583, 17.992);
   chassis.turnToAngle(178.5);

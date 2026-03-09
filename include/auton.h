@@ -27,6 +27,8 @@ extern void outTake();
 extern void moveSlot();
 extern void unloadAll();
 
+extern void setup(); // Initial setup for Autonomous Period
+
 // Autonomous Skills Route Functions
 extern void autonSkills15();
 extern void autonSkills24();
