@@ -224,6 +224,16 @@ void toggleLift() {
 
 
 /******************************************************************
+ * Function: toggleExtendo()
+ * 
+ * Purpose: Manual toggle for Extendo
+*******************************************************************/
+void toggleExtendo() {
+  extendo.set(!extendo.value());
+}
+
+
+/******************************************************************
  * Function: outTake()
  * 
  * Purpose: Shoots & Outtakes TOP Slot Blocks
@@ -383,6 +393,8 @@ void usercontrol() {
   Controller1.ButtonL1.pressed(forwardIntake);
 
   Controller1.ButtonLeft.pressed(fixGeneva);
+
+  Controller1.ButtonY.pressed(toggleExtendo);
 
   bool liftToggle = false;
   bool matchLoadToggle = false;

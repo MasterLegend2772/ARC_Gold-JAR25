@@ -23,6 +23,7 @@ extern bool isInAuton;
 extern bool isSlotFull();
 
 extern void toggleLift();
+extern void toggleExtendo();
 extern void outTake();
 extern void moveSlot();
 extern void unloadAll();

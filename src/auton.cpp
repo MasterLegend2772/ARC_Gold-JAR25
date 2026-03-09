@@ -251,20 +251,20 @@ void skillsRoute2() {
   //Unload Matchloader
   //chassis.driveDistance(12);
   chassis.driveToPoint(103, 6.25);
-  while(!isSlotFull())
-  {
-    chassis.turnToAngle(178);
-    chassis.turnToAngle(182);
+  while(!isSlotFull()) {
+    toggleExtendo();
+    wait(0.1, seconds);
   }
+
   chassis.turnToAngle(180);
   intake.spin(forward, 0.00, volt);
   moveSlot();
   intake.spin(forward, 12.00, volt);
-  while(!isSlotFull())
-  {
+  while(!isSlotFull()) {
     chassis.turnToAngle(172);
     chassis.turnToAngle(182);
   }
+
   chassis.turnToAngle(180);
   intake.spin(forward, 0.00, volt);
   moveSlot();
