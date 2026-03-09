@@ -22,7 +22,9 @@ extern bool armUp;
 extern bool isInAuton;
 extern bool isSlotFull();
 
+extern void toggleParkDescore();
 extern void toggleLift();
+extern void toggleExtendo();
 extern void outTake();
 extern void moveSlot();
 extern void unloadAll();

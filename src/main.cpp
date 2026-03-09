@@ -192,7 +192,7 @@ void autonomous(void) {
   autoStarted = true;
 
   //autonSkills();
-  skillsRoute2();
+  autonSkills24();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -215,6 +215,17 @@ void autonomous(void) {
 void toggleParkDescore() {
   parkDescore.set(!parkDescore.value());
 }
+
+
+/******************************************************************
+ * Function: toggleExtendo()
+ * 
+ * Purpose: Manual toggle for Extendo
+*******************************************************************/
+void toggleExtendo() {
+  extendo.set(!extendo.value());
+}
+
 
 /******************************************************************
  * Function: toggleLift()
@@ -293,6 +304,7 @@ void unloadAll() {
     waitUntil(!revolver.isSpinning());
   }
 }
+
 
 /******************************************************************
  * Function: forwardIntake()
@@ -395,6 +407,9 @@ void usercontrol() {
   Controller1.ButtonX.pressed(toggleParkDescore);
 
   Controller1.ButtonLeft.pressed(fixGeneva);
+
+  Controller1.ButtonY.pressed(toggleExtendo);
+
 
   bool liftToggle = false;
   bool matchLoadToggle = false;
