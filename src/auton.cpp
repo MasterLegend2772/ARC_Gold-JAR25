@@ -144,10 +144,7 @@ void setup15() {
 
   // Initialize Setup
   chassis.setCoordinates(75.592, 12.992, 255);
-  toggleLift();
   extendo.set(true);
-  wait(0.15, sec);
-  toggleLift();
 }
 
 
@@ -161,10 +158,7 @@ void setup24() {
   odom_constants();
 
   // Initialize Setup
-  chassis.setCoordinates(73.442, 18.456, 255);
-  toggleLift();
-  wait(0.15, sec);
-  toggleLift();
+  chassis.setCoordinates(56.442, 18.456, 270);
 }
 
 
@@ -178,7 +172,7 @@ void autonSkills15() {  // 15 Inch Version
   setup15();
 
   // Drive to Matchload
-  chassis.driveToPoint(103.583, 17.992);
+  chassis.driveToPoint(103.583, 17.362);
   chassis.turnToAngle(178.5);
   wait(0.15, seconds);
 
@@ -258,48 +252,85 @@ void autonSkills15() {  // 15 Inch Version
 void autonSkills24() {  // 24 Inch Version
   // Setup
   setup24();
+
+  // Descore Red Park Zone
+  chassis.driveToPoint(14.542, 18.456);
+
+  // Descore Matchload
+  chassis.turnToAngle(180);
+  matchLoader.set(true);
+  intake.spin(forward, 12.00, volt);
+  wait(0.5, seconds);
+  chassis.driveToPoint(14.542,  6.25);
+  wait(1.25, seconds);
+  while (!isSlotFull()) {
+    // Add if Intake doesn't work still
+  }
+  intake.spin(forward, 0.00, volt);
+  moveSlot();
+  intake.spin(forward, 12.00, volt);
+  wait(0.25, seconds);
+  while (!isSlotFull()) {
+
+  }
+  moveSlot();
+
+  // Intake Descored Park Zone Blocks
+  chassis.driveToPoint(14.542,  12.25);
+  chassis.turnToAngle(270);
+  chassis.driveToPoint(2.5, 12.25);
+  wait(0.5, seconds);
+  moveSlot();
+  wait(0.15, seconds);
+  chassis.driveToPoint(0.0, 16.140);
+  wait(0.25, seconds);
+  moveSlot();
+
 }
 
 void skillsRoute2() {
   // Setup
-  setup15;
+  setup15();
 
   //Align to Matchloader1
-  chassis.driveToPoint(103.583, 17.992);
+  chassis.driveToPoint(103.150, 17.362);
   chassis.turnToAngle(178.5);
   matchLoader.set(true);
   intake.spin(forward, 12.00, volt);
   wait(0.5, seconds);
 
   //Unload Matchloader
-  //chassis.driveDistance(12);
-  chassis.driveToPoint(103, 6.25);
-  while(!isSlotFull()) {
-    toggleExtendo();
-    wait(0.1, seconds);
+  chassis.driveToPoint(103.150, 6.25);
+  wait(1.25, seconds);
+  
+  // Auto Rotate Slot
+    // Conditional if Block Intake gets stuck
+  while(!isSlotFull()) { // Tune & Test
+    chassis.driveDistance(-3);
+    wait(0.25, seconds);
+    chassis.driveDistance(3);
+    wait(0.25, seconds);
   }
-
-  chassis.turnToAngle(180);
+    // Rotate Slot
   intake.spin(forward, 0.00, volt);
   moveSlot();
   intake.spin(forward, 12.00, volt);
+  wait(0.25, seconds);
+    // Conditional if Block Intake gets stuck
   while(!isSlotFull()) {
-    chassis.turnToAngle(172);
-    chassis.turnToAngle(182);
+    chassis.driveDistance(-3);
+    wait(0.25, seconds);
+    chassis.driveDistance(3);
+    wait(0.25, seconds);
   }
-
-  chassis.turnToAngle(180);
-  intake.spin(forward, 0.00, volt);
-  moveSlot();
 
   //Travel Down the Side
   matchLoader.set(false);
-  chassis.driveToPoint(116.5, 35);
-  chassis.turnToAngle(180);
+  chassis.driveToPose(116.5, 35, 0);
   chassis.driveToPoint(116.5, 97);
-  chassis.driveToPoint(100, 109);
-  chassis.turnToAngle(90);
+  chassis.leftSwingToAngle(88.5);
 
+  // Intake Side Blocks
   intake.spin(forward, 12, volt);
   chassis.driveToPoint(116, 109);
 }

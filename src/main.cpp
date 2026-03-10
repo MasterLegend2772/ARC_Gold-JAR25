@@ -196,8 +196,7 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
 
-  //autonSkills();
-  skillsRoute2();
+  autonSkills24();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -461,7 +460,7 @@ void usercontrol() {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
-  Competition.drivercontrol(odomTest);
+  Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
   pre_auton();
