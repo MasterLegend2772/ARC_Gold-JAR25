@@ -306,9 +306,9 @@ void skillsRoute2() {
   // Auto Rotate Slot
     // Conditional if Block Intake gets stuck
   while(!isSlotFull()) { // Tune & Test
-    chassis.driveDistance(-3);
+    chassis.driveDistance(-2);
     wait(0.25, seconds);
-    chassis.driveDistance(3);
+    chassis.driveDistance(2);
     wait(0.25, seconds);
   }
     // Rotate Slot
@@ -318,9 +318,9 @@ void skillsRoute2() {
   wait(0.25, seconds);
     // Conditional if Block Intake gets stuck
   while(!isSlotFull()) {
-    chassis.driveDistance(-3);
+    chassis.driveDistance(-2);
     wait(0.25, seconds);
-    chassis.driveDistance(3);
+    chassis.driveDistance(2);
     wait(0.25, seconds);
   }
 
