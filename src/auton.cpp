@@ -162,133 +162,86 @@ void setup24() {
 }
 
 
+
+void autonMatchload() {
+	while(!isSlotFull()) {
+		chassis.driveDistance(-2);
+		wait(0.25, seconds);
+		chassis.driveDistance(2);
+		wait(0.25, seconds);
+	}
+
+    // Rotate Slot
+	intake.spin(forward, 0.00, volt);
+	moveSlot();
+	intake.spin(forward, 12.00, volt);
+}
+
+
 /******************************************************************
- * Function: autonSkills()
+ * Function: autonMatch15()
  * 
- * Purpose: Autonomous Skills Route
+ * Purpose: Autonomous MATCH Route for 15 Inch
+*******************************************************************/
+void autonMatch15() {
+// Setup
+  	setup15();
+
+//Align to Matchloader1
+	chassis.driveToPoint(103.150, 17.362);
+	chassis.turnToAngle(178.5);
+	matchLoader.set(true);
+	intake.spin(forward, 12.00, volt);
+	wait(0.5, seconds);
+
+//Unload Matchloader
+	chassis.driveToPoint(103.150, 6.25);
+	wait(1, seconds);
+  
+// Auto Rotate Slot && Matchload Function
+	// Remove While Loop if possible
+		// MUST FIX INTAKE PROBLEM FIRST
+	autonMatchload();
+	wait(0.75, seconds);
+	autonMatchload();
+	wait(0.75, seconds);
+	autonMatchload();
+	wait(0.75, seconds);
+	autonMatchload();
+
+
+// Reverse to RED Side Blocks
+	matchLoader.set(false);
+	chassis.driveToPose(116.5, 23.211, 90);
+	chassis.leftSwingToAngle(88.5);
+
+// Intake Side Blocks
+	intake.spin(forward, 12, volt);
+	chassis.driveToPoint(120, 109);
+
+// Score in CLOSEST Long Goal
+
+
+// Reverse to Driver Control Starting Position
+}
+
+
+/******************************************************************
+ * Function: autonSkills24()
+ * 
+ * Purpose: Autonomous MATCH Route for 24 Inch
+*******************************************************************/
+void autonMatch24() {
+
+}
+
+
+/******************************************************************
+ * Function: autonSkills15()
+ * 
+ * Purpose: Autonomous SKILLS Route for 15 Inch
 *******************************************************************/
 void autonSkills15() {  // 15 Inch Version
-  // Setup
-  setup15();
-
-  // Drive to Matchload
-  chassis.driveToPoint(103.583, 17.362);
-  chassis.turnToAngle(178.5);
-  wait(0.15, seconds);
-
-  // Red Matchload (+3 Red || +3 Blue)
-  matchLoader.set(true);
-  // intake.spin(forward, 12.00, volt);
-  chassis.driveDistance(8.84);
-  wait(1.75, seconds);
-
-  // Drive to get Sideblocks (+2 Blue)
-  chassis.driveDistance(-4.95);
-  wait(0.1, seconds);
-  matchLoader.set(false);
-  chassis.driveDistance(-6.00);
-  chassis.turnToAngle(88.5);
-  wait(0.15, seconds);
-  chassis.driveDistance(13.46);
-  wait(0.55, seconds);
-
-  // Drive to Score in CLOSEST Long Goal
-  chassis.driveDistance(-13.53);
-  chassis.turnToAngle(-1.5);
-  wait(0.15, seconds);
-  chassis.driveDistance(13.55);
-  toggleLift();
-  outTake();
-  moveSlot();
-  outTake();
-  moveSlot();
-  outTake();
-  wait(0.1, seconds);
-  toggleLift();
-
-  // Drive to Intake BLUE Side Blocks
-  chassis.driveDistance(-7);
-  chassis.leftSwingToAngle(-178.5);
-  wait(0.15, seconds);
-  chassis.driveToPoint(117.294, 98.575);
-  chassis.leftSwingToAngle(88.5);
-  wait(0.15, seconds);
-  chassis.driveDistance(8.5);
-  wait(0.55, seconds);
-
-  // Blue Matchload
-  chassis.driveDistance(-13.43);
-  chassis.turnToAngle(-1.5);
-  wait(0.15, seconds);
-  matchLoader.set(true);
-  chassis.driveDistance(10.55);
-  wait(1.75, seconds);
-  chassis.driveDistance(-10.95);
-  matchLoader.set(false);
-  chassis.turnToAngle(178.5);
-  chassis.driveDistance(11.45);
-  chassis.turnToAngle(178.5);
-  wait(0.15, seconds);
-  toggleLift();
-  outTake();
-  moveSlot();
-  outTake();
-  moveSlot();
-  outTake();
-  wait(0.1, seconds);
-  toggleLift();
-
-  // Drive to Park Zone && Park
-  chassis.driveDistance(-7);
-  chassis.leftSwingToAngle(1.5);
-  wait(0.15, seconds);
-  chassis.driveToPoint(84.488, 15.578);
-  chassis.turnToAngle(91.5);
-  chassis.driveDistance(-18.25);
-
-  // End
-}
-
-void autonSkills24() {  // 24 Inch Version
-  // Setup
-  setup24();
-
-  // Descore Red Park Zone
-  chassis.driveToPoint(14.542, 18.456);
-
-  // Descore Matchload
-  chassis.turnToAngle(180);
-  matchLoader.set(true);
-  intake.spin(forward, 12.00, volt);
-  wait(0.5, seconds);
-  chassis.driveToPoint(14.542,  6.25);
-  wait(1.25, seconds);
-  while (!isSlotFull()) {
-    // Add if Intake doesn't work still
-  }
-  intake.spin(forward, 0.00, volt);
-  moveSlot();
-  intake.spin(forward, 12.00, volt);
-  wait(0.25, seconds);
-  while (!isSlotFull()) {
-
-  }
-  moveSlot();
-
-  // Intake Descored Park Zone Blocks
-  chassis.driveToPoint(14.542,  12.25);
-  chassis.turnToAngle(270);
-  chassis.driveToPoint(2.5, 12.25);
-  wait(0.5, seconds);
-  moveSlot();
-  wait(0.15, seconds);
-  chassis.driveToPoint(0.0, 16.140);
-  wait(0.25, seconds);
-  moveSlot();
-
-}
-
-void skillsRoute2() {
   // Setup
   setup15();
 
@@ -333,4 +286,53 @@ void skillsRoute2() {
   // Intake Side Blocks
   intake.spin(forward, 12, volt);
   chassis.driveToPoint(116, 109);
+
+
+  // Continue as Needed
+}
+
+
+/******************************************************************
+ * Function: autonSkills24()
+ * 
+ * Purpose: Autonomous SKILLS Route for 24 Inch
+*******************************************************************/
+void autonSkills24() {  // 24 Inch Version
+  // Setup
+  setup24();
+
+  // Descore Red Park Zone
+  chassis.driveToPoint(14.542, 18.456);
+
+  // Descore Matchload
+  chassis.turnToAngle(180);
+  matchLoader.set(true);
+  intake.spin(forward, 12.00, volt);
+  wait(0.5, seconds);
+  chassis.driveToPoint(14.542,  6.25);
+  wait(1.25, seconds);
+  while (!isSlotFull()) {
+    // Add if Intake doesn't work still
+  }
+  intake.spin(forward, 0.00, volt);
+  moveSlot();
+  intake.spin(forward, 12.00, volt);
+  wait(0.25, seconds);
+  while (!isSlotFull()) {
+
+  }
+  moveSlot();
+
+  // Intake Descored Park Zone Blocks
+  chassis.driveToPoint(14.542,  12.25);
+  chassis.turnToAngle(270);
+  chassis.driveToPoint(2.5, 12.25);
+  wait(0.5, seconds);
+  moveSlot();
+  wait(0.15, seconds);
+  chassis.driveToPoint(0.0, 16.140);
+  wait(0.25, seconds);
+  moveSlot();
+
+  // Continue as Needed
 }

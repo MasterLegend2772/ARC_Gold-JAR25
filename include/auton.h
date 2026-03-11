@@ -28,9 +28,18 @@ extern void outTake();
 extern void moveSlot();
 extern void unloadAll();
 
-// Autonomous Skills Route Functions
+
+// Robot SETUP Functions
 extern void setup15();
 extern void setup24();
+
+// Autonomous Miscellaneous Functions
+extern void autonMatchload();
+
+// Autonomous MATCH Route Functions
+extern void autonMatch15();
+extern void autonMatch24();
+
+// Autonomous SKILLS Route Functions
 extern void autonSkills15();
 extern void autonSkills24();
-extern void skillsRoute2();

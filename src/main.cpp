@@ -196,7 +196,7 @@ void pre_auton() {
 void autonomous(void) {
   autoStarted = true;
 
-  autonSkills24();
+  autonMatch15();
 }
 
 /*---------------------------------------------------------------------------*/
