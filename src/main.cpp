@@ -385,9 +385,9 @@ void usercontrol() {
 
   Brain.Screen.clearScreen();
 
-  Controller1.ButtonR1.pressed(outTake);
+  Controller1.ButtonR1.pressed(reverseIntake);
   
-  Controller1.ButtonR2.pressed(reverseIntake);
+  Controller1.ButtonR2.pressed(outTake);
 
   Controller1.ButtonL1.pressed(forwardIntake);
 
@@ -442,7 +442,7 @@ void usercontrol() {
     }
 
     // Stops Intake Spin (Forward && Reverse)
-    if (!Controller1.ButtonL1.pressing() && !Controller1.ButtonL2.pressing() && !Controller1.ButtonR2.pressing()) {
+    if (!Controller1.ButtonL1.pressing() && !Controller1.ButtonL2.pressing() && !Controller1.ButtonR1.pressing()) {
       intake.spin(reverse, 0, volt);
     }
 

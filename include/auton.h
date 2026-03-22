@@ -35,6 +35,7 @@ extern void setup24();
 
 // Autonomous Miscellaneous Functions
 extern void autonMatchload();
+extern void autoScoreAll();
 
 // Autonomous MATCH Route Functions
 extern void autonMatch15();
