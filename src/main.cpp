@@ -446,8 +446,10 @@ void usercontrol() {
       intake.spin(reverse, 0, volt);
     }
 
-    // Replace this line with [chassis.controlTank()] for tank drive 
-    // or [chassis.controlHolonomic()] for holonomic drive.
+    // Replace this line with the following to change Drivetrain Control
+    // [chassis.controlArcade()]      for ARCADE drive
+    // [chassis.controlTank()]        for TANK drive 
+    // [chassis.controlHolonomic()]   for HOLONOMIC drive
     chassis.controlTank(); // !!! Control Tank for Coby !!!
 
     wait(20, msec); 
