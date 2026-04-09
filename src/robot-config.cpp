@@ -28,6 +28,7 @@ motor outtakeLeft = motor(PORT1, ratio18_1, true);
 motor outtakeRight = motor(PORT11, ratio18_1, false);
 motor_group outtake = motor_group(outtakeLeft, outtakeRight);
 
+
 motor intakeLeft = motor(PORT2, ratio36_1, true);
 motor intakeRight = motor(PORT9, ratio36_1, false);
 motor_group intake = motor_group(intakeLeft, intakeRight);
@@ -86,3 +87,6 @@ void vexcodeInit(void) {
   rotationH.resetPosition();
   rotationF.resetPosition();
 }
+
+// Creates a limit instance in Port E
+limit LimitSwitch = limit(Brain.ThreeWirePort.E);

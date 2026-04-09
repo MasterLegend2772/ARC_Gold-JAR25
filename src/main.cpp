@@ -2,6 +2,7 @@
 
 #include "vex.h"
 #include "auton.h"
+#include "robot-config.h"
 
 using namespace vex;
 competition Competition;
@@ -40,6 +41,7 @@ void autonSkills(); // Autonnomous Route to Run
 void outTake();
 void rotateRevolver();
 void usercontrol();
+void descore();
 
 bool armUp = false;
 bool isInAuton = false;
@@ -234,12 +236,13 @@ void outTake() {
     outtake.stop(coast);
     outtake.setVelocity(100, percent);
     outtake.spinToPosition(100, degrees, true);
-    outtake.spinFor(reverse, 0.75, sec);
+    outtake.spin(reverse, 12, volt);
+    waitUntil(LimitSwitch.pressing());
+    outtake.spin(reverse, 0, volt);
     outtake.stop(hold);
     armUp = false;
   }
 }
-
 
 /******************************************************************
  * Function: forwardIntake()

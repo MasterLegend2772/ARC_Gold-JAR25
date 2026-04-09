@@ -26,6 +26,7 @@ extern motor_group outtake;
 extern motor intakeLeft;
 extern motor intakeRight;
 extern motor_group intake;
+extern limit LimitSwitch;
 
 extern rotation rotationH;
 extern rotation rotationF;
