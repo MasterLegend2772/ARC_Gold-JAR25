@@ -32,10 +32,11 @@ extern rotation rotationF;
 
 extern inertial inertial1;
 
-extern led liftR;
-extern led liftL;
-extern led matchLoader;
-extern led extendo;
+extern pneumatics liftR;
+extern pneumatics liftL;
+extern pneumatics matchLoader;
+extern limit outtakeSwitch;
+extern pneumatics extendo;
 
 extern distance backDistanceSensor;
 extern distance middleDistanceSensor;

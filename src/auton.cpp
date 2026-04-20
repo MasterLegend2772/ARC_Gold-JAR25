@@ -1,5 +1,8 @@
 #include "vex.h"
 
+// Global Variables
+int blockSlots = 0;
+
 /**
  * Resets the constants for auton movement.
  * Modify these to change the default behavior of functions like
@@ -171,7 +174,6 @@ void setup24() {
  * 
  * Purpose: Moves Forward/Reverse to re-align with Matchload
 *******************************************************************/
-int blockSlots = 0;
 void autonMatchload() {
 	while(!isSlotFull()) {
 		chassis.driveDistance(-2);
@@ -218,6 +220,8 @@ void autoScoreAll(bool matchCheck, int enemySlot = 0) { // No Blue Slot if no pa
  * Purpose: Autonomous MATCH Route for 15 Inch
 *******************************************************************/
 void autonMatch15() {
+// Change setup position to Parking Zone EDGE
+	// Update AUTON as necessary
 // Setup
 	setup15();
 	revolver.spinToPosition(-360, degrees, true);

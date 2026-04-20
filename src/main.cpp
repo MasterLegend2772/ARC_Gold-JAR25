@@ -240,6 +240,7 @@ void toggleExtendo() {
 void outTake() { 
   if (!revolver.isSpinning()) {
     armUp = true;
+    // Open Block Stopper
     outtake.stop(coast);
     outtake.setVelocity(100, percent);
     outtake.spinToPosition(100, degrees, true);
@@ -299,10 +300,11 @@ void unloadAll() {
   }
 }
 
+
 /******************************************************************
  * Function: forwardIntake()
  * 
- * Purpose: Rotates Revolver by ONE Slot
+ * Purpose: Intakes blocks
 *******************************************************************/
 void forwardIntake() {
   if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
@@ -310,6 +312,12 @@ void forwardIntake() {
   }
 }
 
+
+/******************************************************************
+ * Function: reverseIntake()
+ * 
+ * Purpose: Outtake blocks to fix intaking problems
+*******************************************************************/
 void reverseIntake() {
   if ((!revolver.isSpinning()) && ((liftL.value() == false) && (liftR.value() == false))) {
     intake.spin(reverse, 12, volt);
@@ -377,10 +385,6 @@ void usercontrol() {
   setBrake();
 
   extendo.set(true);
-
-  outtake.spin(reverse, 9, volt);
-  wait(0.1, sec);
-  outtake.spin(reverse, 0, volt);
   outtake.stop(hold);
 
   Brain.Screen.clearScreen();

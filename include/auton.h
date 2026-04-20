@@ -18,6 +18,8 @@ void holonomicOdomTest();
 
 
 // ARC Gold Specific Functions && Variables
+extern int blockSlots;
+
 extern bool armUp;
 extern bool isInAuton;
 extern bool isSlotFull();

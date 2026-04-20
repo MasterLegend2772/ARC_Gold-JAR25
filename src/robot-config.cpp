@@ -44,10 +44,11 @@ rotation rotationF = rotation(PORT5);  // Forward
 inertial inertial1 = inertial(PORT8);
 /////////////////////////////////////////
 
-led liftR = led(Brain.ThreeWirePort.A);
-led liftL = led(Brain.ThreeWirePort.B);
-led matchLoader = led(Brain.ThreeWirePort.C);
-led extendo = led(Brain.ThreeWirePort.G);
+pneumatics liftR = pneumatics(Brain.ThreeWirePort.A);
+pneumatics liftL = pneumatics(Brain.ThreeWirePort.B);
+pneumatics matchLoader = pneumatics(Brain.ThreeWirePort.C);
+limit outtakeSwitch = limit(Brain.ThreeWirePort.D);
+pneumatics extendo = pneumatics(Brain.ThreeWirePort.G);
 
 /////////////////////////////////////
 
