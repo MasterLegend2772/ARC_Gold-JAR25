@@ -386,6 +386,7 @@ void usercontrol() {
 
   extendo.set(true);
   outtake.stop(hold);
+  // Block Stop = false
 
   Brain.Screen.clearScreen();
 

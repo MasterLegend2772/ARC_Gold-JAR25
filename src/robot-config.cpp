@@ -36,26 +36,29 @@ motor_group intake = motor_group(intakeLeft, intakeRight);
 //TODO: CHANGE THE NAMES OF THESE
 rotation rotationH = rotation(PORT4); // Horizontal
 rotation rotationF = rotation(PORT5);  // Forward
-
-/////////////////////////////////////////
+///////////////////////////////////////////
 
 //////////// Inertial Sensors ////////////
-
 inertial inertial1 = inertial(PORT8);
 /////////////////////////////////////////
 
+///// Pneumatics & Three-Wire Ports /////
 pneumatics liftR = pneumatics(Brain.ThreeWirePort.A);
 pneumatics liftL = pneumatics(Brain.ThreeWirePort.B);
 pneumatics matchLoader = pneumatics(Brain.ThreeWirePort.C);
 limit outtakeSwitch = limit(Brain.ThreeWirePort.D);
+pneumatics outFlap = pneumatics(Brain.ThreeWirePort.H);
 pneumatics extendo = pneumatics(Brain.ThreeWirePort.G);
-
 /////////////////////////////////////
 
+////////// Distance Sensor //////////
 distance backDistanceSensor = distance(PORT7);
 distance middleDistanceSensor = distance(PORT6);
 distance frontDistanceSensor = distance(PORT16);
+/////////////////////////////////////
 
+
+/////// Drivetrain Constants ///////
 void setDriveTrainConstants() {
   // Set the Drive PID values for the DriveTrain
     chassis.setDriveTrainConstants(
@@ -75,7 +78,10 @@ void setDriveTrainConstants() {
         200      // Time to Settle
     );
 }
+/////// Drivetrain Constants ///////
 
+
+///// VEX Code Initialization /////
 void vexcodeInit(void) {
   setDriveTrainConstants();
   enum preAutonStates{START_SCREEN = 0, SELECTION_SCREEN = 1};

@@ -273,7 +273,7 @@ void autonMatch15() {
 
 
 /******************************************************************
- * Function: autonSkills24()
+ * Function: autonMatch24()
  * 
  * Purpose: Autonomous MATCH Route for 24 Inch
 *******************************************************************/
