@@ -1,4 +1,4 @@
-/// Coby TANK Branch ///
+/// Grego ARCADE Branch ///
 
 #include "vex.h"
 #include "auton.h"
