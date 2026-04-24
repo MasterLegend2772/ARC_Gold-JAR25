@@ -223,6 +223,16 @@ void toggleLift() {
 
 
 /******************************************************************
+ * Function: toggleFlap()
+ * 
+ * Purpose: Manual toggle for Outtake Flap
+*******************************************************************/
+void toggleFlap() {
+  outFlap.set(!outFlap.value());
+}
+
+
+/******************************************************************
  * Function: toggleExtendo()
  * 
  * Purpose: Manual toggle for Extendo
@@ -240,10 +250,12 @@ void toggleExtendo() {
 void outTake() { 
   if (!revolver.isSpinning()) {
     armUp = true;
-    // Open Block Stopper
+    toggleFlap();
     outtake.stop(coast);
     outtake.setVelocity(100, percent);
+    wait(0.015, seconds);
     outtake.spinToPosition(100, degrees, true);
+    toggleFlap();
     outtake.spinFor(reverse, 0.75, sec);
     outtake.stop(hold);
     armUp = false;
@@ -398,10 +410,11 @@ void usercontrol() {
 
   Controller1.ButtonLeft.pressed(fixGeneva);
 
-  Controller1.ButtonY.pressed(toggleExtendo);
+  Controller1.ButtonX.pressed(toggleFlap);
 
   bool liftToggle = false;
   bool matchLoadToggle = false;
+  bool flapToggle = false;
 
   // User Control Code inside loop
   while (1) {
@@ -436,6 +449,14 @@ void usercontrol() {
       liftToggle = true;
     } else if (!Controller1.ButtonRight.pressing() && liftToggle) {
       liftToggle = false;
+    }
+
+    // Outtake Flap Toggle (Rise || Fall)
+    if ((Controller1.ButtonX.pressing() || Controller1.ButtonR2.pressing()) && !flapToggle) {
+      toggleFlap();
+      flapToggle = true;
+    } else if (!(Controller1.ButtonX.pressing() || Controller1.ButtonR2.pressing()) && flapToggle) {
+      flapToggle = false;
     }
 
     // Matchload Toggle (Rise || Fall)

@@ -47,7 +47,7 @@ pneumatics liftR = pneumatics(Brain.ThreeWirePort.A);
 pneumatics liftL = pneumatics(Brain.ThreeWirePort.B);
 pneumatics matchLoader = pneumatics(Brain.ThreeWirePort.C);
 limit outtakeSwitch = limit(Brain.ThreeWirePort.D);
-pneumatics outFlap = pneumatics(Brain.ThreeWirePort.H);
+pneumatics outFlap = pneumatics(Brain.ThreeWirePort.F);
 pneumatics extendo = pneumatics(Brain.ThreeWirePort.G);
 /////////////////////////////////////
 

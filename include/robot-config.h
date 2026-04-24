@@ -35,6 +35,7 @@ extern inertial inertial1;
 extern pneumatics liftR;
 extern pneumatics liftL;
 extern pneumatics matchLoader;
+extern pneumatics outFlap;
 extern limit outtakeSwitch;
 extern pneumatics extendo;
 
