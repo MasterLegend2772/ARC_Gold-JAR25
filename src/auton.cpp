@@ -146,7 +146,7 @@ void setup15() {
 	odom_constants();
 
 	// Initialize Setup
-	chassis.setCoordinates(75.592, 12.992, 255);
+	chassis.setCoordinates(75.592, 12.992, 90);
 	extendo.set(true);
 	revolver.setVelocity(100, percent);
 	blockSlots = 0;
