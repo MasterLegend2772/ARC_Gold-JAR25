@@ -476,7 +476,7 @@ void usercontrol() {
     // [chassis.controlArcade()]      for ARCADE drive
     // [chassis.controlTank()]        for TANK drive 
     // [chassis.controlHolonomic()]   for HOLONOMIC drive
-    chassis.controlTank(); // !!! Control Tank for Coby !!!
+    chassis.controlArcade(); // !!! Control Tank for Coby !!!
 
     wait(20, msec); 
     // Sleep the task for a short amount of time to
