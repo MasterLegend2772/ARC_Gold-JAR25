@@ -1,4 +1,4 @@
-/// Coby TANK Branch ///
+/// Grego ARCADE Branch ///
 
 #include "vex.h"
 #include "auton.h"
@@ -139,51 +139,6 @@ void pre_auton() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   defaultConstants();
-
-  // while (!autoStarted){
-
-  //   Brain.Screen.clearScreen();
-  //   Brain.Screen.printAt(1, 10, "ARC_Gold Template v0.0.1");
-  //   Brain.Screen.printAt(1, 40, "Battery Percentage: ");
-  //   Brain.Screen.printAt(1, 60, "%d", Brain.Battery.capacity());
-  //   Brain.Screen.printAt(15, 20, "Chassis Heading Reading: ");
-  //   Brain.Screen.printAt(15, 60, "%f", chassis.getAbsoluteHeading());
-  //   Brain.Screen.printAt(30, 20, "Selected Auton:");
-  //   switch(currentAutonSelection){
-      
-  //     case 0:
-  //       Brain.Screen.printAt(7, 50, "Auton 1");
-  //       break;
-  //     case 1:
-  //       Brain.Screen.printAt(7, 50, "Auton 2");
-  //       break;
-  //     case 2:
-  //       Brain.Screen.printAt(7, 50, "Auton 3");
-  //       break;
-  //     case 3:
-  //       Brain.Screen.printAt(7, 50, "Auton 4");
-  //       break;
-  //     case 4:
-  //       Brain.Screen.printAt(7, 50, "Auton 5");
-  //       break;
-  //     case 5:
-  //       Brain.Screen.printAt(7, 50, "Auton 6");
-  //       break;
-  //     case 6:
-  //       Brain.Screen.printAt(7, 50, "Auton 7");
-  //       break;
-  //     case 7:
-  //       Brain.Screen.printAt(7, 50, "Auton 8");
-  //       break;
-  //   }
-  //   if (Brain.Screen.pressing()){
-  //     while (Brain.Screen.pressing()) {}
-  //     currentAutonSelection++;
-  //   } else if (currentAutonSelection == 8){
-  //     currentAutonSelection = 0;
-  //   }
-  //   task::sleep(10);
-  // }
 }
 
 /*
@@ -250,14 +205,13 @@ void toggleExtendo() {
 void outTake() { 
   if (!revolver.isSpinning()) {
     armUp = true;
-    toggleFlap();
+    outFlap.open();
     outtake.stop(coast);
     outtake.setVelocity(100, percent);
-    wait(0.015, seconds);
     outtake.spinToPosition(100, degrees, true);
-    toggleFlap();
     outtake.spinFor(reverse, 0.75, sec);
     outtake.stop(hold);
+    outFlap.close();
     armUp = false;
   }
 }
@@ -452,10 +406,10 @@ void usercontrol() {
     }
 
     // Outtake Flap Toggle (Rise || Fall)
-    if ((Controller1.ButtonX.pressing() || Controller1.ButtonR2.pressing()) && !flapToggle) {
+    if ((Controller1.ButtonX.pressing()) && !flapToggle) {
       toggleFlap();
       flapToggle = true;
-    } else if (!(Controller1.ButtonX.pressing() || Controller1.ButtonR2.pressing()) && flapToggle) {
+    } else if (!(Controller1.ButtonX.pressing()) && flapToggle) {
       flapToggle = false;
     }
 
@@ -472,11 +426,11 @@ void usercontrol() {
       intake.spin(reverse, 0, volt);
     }
 
-    // Replace this line with the following to change Drivetrain Control
+  // Replace this line with the following to change Drivetrain Control
     // [chassis.controlArcade()]      for ARCADE drive
     // [chassis.controlTank()]        for TANK drive 
     // [chassis.controlHolonomic()]   for HOLONOMIC drive
-    chassis.controlTank(); // !!! Control Tank for Coby !!!
+    chassis.controlTank(); // !!! Control Arcade for Grego !!!
 
     wait(20, msec); 
     // Sleep the task for a short amount of time to prevent wasted resources.
